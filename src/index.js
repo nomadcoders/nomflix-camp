@@ -1,4 +1,4 @@
-import "styles.css";
+import "./styles.css";
 
 const add = (x = 0, y = 0) => x + y;
 
