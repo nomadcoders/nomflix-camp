@@ -4,7 +4,9 @@
   "description": "Cloning Netflix like a boss",
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.common.js",
-    "build": "webpack --config webpack/webpack.common.js"
+    "build": "webpack --config webpack/webpack.common.js",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "author": "Me",
   "license": "MIT",
@@ -19,6 +21,7 @@
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^3.2.0",
     "img-loader": "^3.0.0",
     "postcss-cssnext": "^3.1.0",
