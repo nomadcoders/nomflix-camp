@@ -8,13 +8,18 @@ const prodConfig = require("./webpack.prod");
 const MODE = process.env.npm_lifecycle_event;
 
 const PATHS = {
-  app: path.join(__dirname, "../src/index.js"),
+  app: path.join(__dirname, "../src/app.js"),
+  view: path.join(__dirname, "../src/view.js"),
   output: path.join(__dirname, "../dist"),
-  template: path.join(__dirname, "../src/index.html")
+  template: path.join(__dirname, "../src/index.html"),
+  template2: path.join(__dirname, "../src/view.html")
 };
 
 const commonConfig = {
-  entry: ["babel-polyfill", PATHS.app],
+  entry: {
+    app: ["babel-polyfill", PATHS.app],
+    view: ["babel-polyfill", PATHS.view]
+  },
   module: {
     rules: [
       {
@@ -43,12 +48,18 @@ const commonConfig = {
   },
   output: {
     path: PATHS.output,
-    filename: "bundle.js"
+    filename: "[name].js"
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: PATHS.template,
-      filename: "index.html"
+      filename: "index.html",
+      chunks: ["app"]
+    }),
+    new HtmlWebpackPlugin({
+      template: PATHS.template2,
+      filename: "view.html",
+      chunks: ["view"]
     })
   ]
 };
